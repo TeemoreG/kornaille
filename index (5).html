@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1C3022">
+<title>Kornialle – Find Your Perfect Stay in the USA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:       #2D4A35;
+  --forest-deep:  #1C3022;
+  --forest-mid:   #3D6148;
+  --forest-light: #EEF4EF;
+  --forest-mist:  #C8DFC9;
+  --gold:         #C9A84C;
+  --gold-dark:    #A8893B;
+  --cream:        #FAF7F2;
+  --cream-alt:    #F2EBE0;
+  --ink:          #1A1F1C;
+  --ink-mid:      #2E3830;
+  --ink-soft:     #647066;
+  --border:       #DDD6CB;
+  --border-soft:  #EDE8E2;
+  --success:      #2D7A4F;
+  --success-bg:   #EDFBF2;
+  --danger:       #C0392B;
+  --r-sm: 6px;  --r: 12px;  --r-lg: 18px;  --r-xl: 24px;
+  --sh-sm: 0 1px 4px rgba(28,48,34,.07);
+  --sh:    0 4px 18px rgba(28,48,34,.10);
+  --sh-md: 0 8px 28px rgba(28,48,34,.14);
+  --sh-lg: 0 16px 48px rgba(28,48,34,.18);
+  --ease: .22s ease;
+  --safe-t: env(safe-area-inset-top,0px);
+  --safe-b: env(safe-area-inset-bottom,0px);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink-mid);line-height:1.55;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;object-fit:cover;}
+ul{list-style:none;}
+*{-webkit-tap-highlight-color:transparent;}
+button,input,select,textarea{font-family:inherit;font-size:16px;-webkit-appearance:none;appearance:none;border-radius:0;}
+.container{width:100%;padding:0 16px;margin:0 auto;max-width:1280px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:14px 22px;border-radius:var(--r);border:2px solid transparent;font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap;line-height:1;min-height:48px;transition:background var(--ease),border-color var(--ease),transform .12s ease,opacity var(--ease);-webkit-user-select:none;user-select:none;position:relative;overflow:hidden;}
+.btn:active{transform:scale(0.97);opacity:.9;}
+.btn-primary{background:var(--forest);color:#fff;border-color:var(--forest);}
+.btn-accent{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700;}
+.btn-outline{background:transparent;color:var(--forest);border-color:var(--forest);}
+.btn-ghost{background:rgba(255,255,255,.13);color:#fff;border-color:rgba(255,255,255,.3);}
+.btn-sm{padding:11px 18px;font-size:14px;min-height:44px;}
+.btn-lg{padding:16px 28px;font-size:16px;min-height:52px;}
+.btn-full{width:100%;}
+@media(hover:hover){
+  .btn-primary:hover{background:var(--forest-mid);}
+  .btn-accent:hover{background:var(--gold-dark);}
+  .btn-outline:hover{background:var(--forest-light);}
+  .btn-ghost:hover{background:rgba(255,255,255,.22);}
+}
+
+/* ── HEADER ── */
+.header{position:sticky;top:0;z-index:500;background:var(--forest-deep);box-shadow:0 2px 18px rgba(0,0,0,.25);padding-top:var(--safe-t);}
+.topbar{padding:10px 0;}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.logo-link{display:flex;align-items:center;gap:8px;flex-shrink:0;min-height:44px;}
+.logo-img{height:34px;width:auto;border-radius:var(--r-sm);}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#fff;font-style:italic;letter-spacing:-.2px;}
+.logo-badge{font-size:8.5px;font-weight:700;background:var(--gold);color:var(--ink);border-radius:3px;padding:2px 5px;text-transform:uppercase;letter-spacing:.09em;align-self:flex-start;margin-top:5px;}
+.header-actions{display:flex;align-items:center;gap:4px;}
+.hdr-link{display:none;align-items:center;color:rgba(255,255,255,.85);font-size:13.5px;font-weight:500;padding:9px 12px;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all var(--ease);min-height:40px;margin-left:4px;}
+.hdr-btn-outline,.hdr-btn-solid{display:none;}
+.hamburger{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-sm);cursor:pointer;padding:0;min-height:44px;min-width:44px;transition:background var(--ease);}
+.hamburger:active{background:rgba(255,255,255,.2);}
+.hamburger span{width:20px;height:2px;background:rgba(255,255,255,.9);border-radius:2px;display:block;}
+
+/* ── DRAWER ── */
+.drawer{position:fixed;inset:0;z-index:600;background:var(--forest-deep);display:none;flex-direction:column;padding:16px 20px calc(24px + var(--safe-b));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+.drawer.open{display:flex;}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-top:var(--safe-t);}
+.drawer-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-sm);color:#fff;font-size:1.3rem;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center;transition:background var(--ease);}
+.drawer-close:active{background:rgba(255,255,255,.22);}
+.drawer-link{color:rgba(255,255,255,.8);font-size:1rem;font-weight:500;padding:0 0 0 4px;border:none;border-bottom:1px solid rgba(255,255,255,.08);background:none;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;text-align:left;transition:color var(--ease);border-radius:0;min-height:54px;}
+.drawer-link:active{color:#fff;background:rgba(255,255,255,.05);}
+.drawer-auth{display:flex;gap:10px;margin-top:24px;flex-direction:column;}
+.drawer-auth .btn{min-height:52px;font-size:16px;}
+
+/* ── NAV TABS ── */
+.mainnav{background:rgba(0,0,0,.18);border-top:1px solid rgba(255,255,255,.06);}
+.mainnav-scroll{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 4px;}
+.mainnav-scroll::-webkit-scrollbar{display:none;}
+.nav-tab{display:flex;align-items:center;gap:5px;padding:12px 14px;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;cursor:pointer;background:transparent;border:none;border-bottom:2.5px solid transparent;transition:all var(--ease);white-space:nowrap;flex-shrink:0;min-height:44px;border-radius:0;}
+.nav-tab svg{width:14px;height:14px;flex-shrink:0;}
+.nav-tab:active{color:rgba(255,255,255,.9);background:rgba(255,255,255,.05);}
+.nav-tab.active{color:#fff;border-bottom-color:var(--gold);}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(148deg,var(--forest-deep) 0%,var(--forest) 50%,#2a5035 100%);padding:36px 0 0;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:28px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%);}
+.hero-inner{position:relative;z-index:1;padding-bottom:38px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.15em;margin-bottom:14px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:20px;padding:6px 14px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,3.8rem);font-weight:600;color:#fff;line-height:1.07;margin-bottom:12px;letter-spacing:-.02em;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.65);font-size:.95rem;margin-bottom:28px;max-width:480px;line-height:1.65;}
+
+/* Search Card */
+.search-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-lg);overflow:visible;border:1px solid rgba(0,0,0,.06);}
+.search-card-inner{display:flex;flex-direction:column;}
+.sf{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border-soft);position:relative;transition:background var(--ease);min-height:62px;}
+.sf:last-of-type{border-bottom:none;}
+.sf:focus-within{background:var(--forest-light);}
+.sf svg{color:var(--forest);flex-shrink:0;width:18px;height:18px;opacity:.7;}
+.sf-inner{display:flex;flex-direction:column;flex:1;min-width:0;}
+.sf-inner label{font-size:10.5px;font-weight:700;color:var(--forest);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;display:block;cursor:pointer;}
+.sf-inner input{border:none;outline:none;font-size:16px;font-weight:500;color:var(--ink);background:transparent;width:100%;padding:0;min-height:24px;}
+.sf-inner input::placeholder{color:#c0bab3;font-weight:400;}
+.guests-display{cursor:pointer;user-select:none;}
+.guests-display span{font-size:15px;font-weight:500;color:var(--ink);}
+.guests-dd{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-lg);z-index:1000;width:calc(100vw - 32px);max-width:340px;padding:20px;}
+.guests-dd.open{display:block;}
+.g-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border-soft);}
+.g-row:last-of-type{border-bottom:none;}
+.g-label strong{display:block;font-size:15px;font-weight:600;color:var(--ink);}
+.g-label small{font-size:12px;color:var(--ink-soft);}
+.g-ctrl{display:flex;align-items:center;gap:16px;}
+.g-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--forest);background:#fff;color:var(--forest);font-size:1.4rem;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--ease);line-height:1;}
+.g-btn:active:not(:disabled){background:var(--forest);color:#fff;}
+.g-btn:disabled{border-color:var(--border);color:var(--border);cursor:not-allowed;}
+.g-num{font-size:17px;font-weight:700;min-width:26px;text-align:center;color:var(--ink);}
+.search-btn{background:var(--forest);color:#fff;border:none;border-radius:0 0 var(--r-lg) var(--r-lg);padding:17px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;letter-spacing:.03em;transition:background var(--ease),transform .12s ease;width:100%;}
+.search-btn:active{background:var(--forest-mid);transform:scale(.99);}
+.search-btn svg{width:18px;height:18px;}
+
+/* Hero Stats */
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);margin-top:28px;background:rgba(0,0,0,.18);border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(255,255,255,.07);}
+.hstat{text-align:center;padding:16px 10px;}
+.hstat+.hstat{border-left:1px solid rgba(255,255,255,.1);}
+.hstat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.1);}
+.hstat:nth-child(3){border-left:none;}
+.hstat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.1;}
+.hstat span{font-size:10.5px;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.07em;}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--forest-mid);padding:11px 0;}
+.trust-scroll{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.trust-scroll::-webkit-scrollbar{display:none;}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.85);font-weight:500;white-space:nowrap;flex-shrink:0;padding:0 16px;border-right:1px solid rgba(255,255,255,.12);}
+.trust-item:last-child{border-right:none;}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+/* ── SECTIONS ── */
+.section{padding:44px 0;}
+.section-alt{background:var(--cream-alt);}
+.section-white{background:#fff;}
+.section-dark{background:var(--forest-deep);}
+.sec-eyebrow{font-size:10.5px;font-weight:700;color:var(--forest);text-transform:uppercase;letter-spacing:.15em;margin-bottom:5px;}
+.sec-eyebrow-accent{color:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,5vw,2.2rem);font-weight:600;color:var(--ink);line-height:1.1;margin-bottom:4px;letter-spacing:-.02em;}
+.sec-title-white{color:#fff;}
+.sec-sub{font-size:14px;color:var(--ink-soft);max-width:480px;line-height:1.65;}
+.sec-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:24px;}
+.see-all{font-size:13px;font-weight:600;color:var(--forest);background:none;border:1.5px solid var(--forest-mist);border-radius:var(--r-sm);cursor:pointer;white-space:nowrap;padding:9px 16px;min-height:42px;transition:all var(--ease);flex-shrink:0;}
+.see-all:active{background:var(--forest-light);}
+.see-all-white{color:rgba(201,168,76,.9);border-color:rgba(201,168,76,.3);}
+.see-all-white:active{background:rgba(201,168,76,.1);}
+
+/* ── WHY CARDS ── */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.why-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-lg);padding:18px 16px;transition:transform var(--ease),box-shadow var(--ease);position:relative;overflow:hidden;}
+.why-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s ease;}
+.why-card:active{transform:scale(.98);box-shadow:var(--sh);}
+.why-icon{font-size:1.6rem;margin-bottom:10px;}
+.why-card h3{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.why-card p{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+
+/* ── OFFER CARDS ── */
+.offers-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.offer-card{border-radius:var(--r-lg);overflow:hidden;background:#fff;border:1px solid var(--border-soft);display:flex;flex-direction:column;transition:transform var(--ease),box-shadow var(--ease);}
+.offer-card:active{transform:scale(.99);}
+.offer-img{aspect-ratio:16/9;overflow:hidden;}
+.offer-img img{width:100%;height:100%;}
+.offer-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.offer-tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--forest);background:var(--forest-light);padding:4px 10px;border-radius:4px;width:fit-content;}
+.offer-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--ink);}
+.offer-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;flex:1;}
+.offer-body .btn{margin-top:8px;align-self:flex-start;}
+
+/* ── DESTINATIONS ── */
+.dest-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.dest-card{border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;background:var(--forest-light);height:150px;}
+.dest-card.big{grid-column:1/-1;height:200px;}
+.dest-img{width:100%;height:100%;transition:transform .5s ease;}
+.dest-card:active .dest-img{transform:scale(1.04);}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,48,34,.82) 0%,rgba(28,48,34,.1) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;}
+.dest-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#fff;}
+.dest-count{font-size:11px;color:rgba(255,255,255,.7);margin-top:2px;}
+.dest-explore{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:20px;padding:6px 12px;font-size:11.5px;font-weight:600;cursor:pointer;min-height:34px;display:flex;align-items:center;transition:all var(--ease);}
+.dest-explore:active{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+
+/* ── PROPERTY CARDS ── */
+.props-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.prop-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-lg);overflow:hidden;transition:transform var(--ease),box-shadow var(--ease);display:flex;flex-direction:column;cursor:pointer;}
+.prop-card:active{transform:scale(.99);box-shadow:var(--sh);}
+.prop-img-wrap{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--forest-light);}
+.prop-img-wrap img{width:100%;height:100%;}
+.prop-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:var(--r-sm);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.b-red{background:var(--danger);color:#fff;}
+.b-green{background:var(--success);color:#fff;}
+.b-amber{background:var(--gold);color:var(--ink);}
+.prop-wish{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;color:var(--ink-soft);transition:all var(--ease);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.prop-wish:active{color:var(--danger);transform:scale(.9);}
+.prop-wish.on{color:var(--danger);}
+.prop-body{padding:15px;flex:1;display:flex;flex-direction:column;}
+.prop-loc{font-size:10.5px;font-weight:700;color:var(--forest);margin-bottom:4px;text-transform:uppercase;letter-spacing:.07em;}
+.prop-name{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.25;}
+.prop-score-row{display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;}
+.pscore{background:var(--forest);color:#fff;border-radius:4px 4px 4px 0;padding:3px 8px;font-size:12.5px;font-weight:700;}
+.pslabel{font-size:13px;font-weight:600;color:var(--ink);}
+.pscount{font-size:12px;color:var(--ink-soft);}
+.prop-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.ptag{font-size:11px;font-weight:600;padding:3px 8px;background:var(--forest-light);color:var(--forest);border-radius:3px;}
+.ptag-g{background:var(--success-bg);color:var(--success);}
+.prop-footer{margin-top:auto;padding-top:12px;border-top:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.pp-was{font-size:11.5px;color:var(--ink-soft);text-decoration:line-through;}
+.pp-price{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--ink);}
+.pp-night{font-size:11px;color:var(--ink-soft);}
+.btn-avail{background:var(--forest);color:#fff;border:none;border-radius:var(--r-sm);padding:11px 18px;font-size:13px;font-weight:700;cursor:pointer;min-height:44px;transition:background var(--ease),transform .12s;font-family:inherit;white-space:nowrap;}
+.btn-avail:active{background:var(--forest-mid);transform:scale(.97);}
+
+/* ── DEALS ── */
+.deals-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.deal-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:18px 14px;cursor:pointer;transition:all var(--ease);}
+.deal-card:active{background:rgba(255,255,255,.12);border-color:rgba(201,168,76,.4);transform:scale(.98);}
+.deal-icon{font-size:1.6rem;margin-bottom:8px;}
+.deal-pct{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:2px;}
+.deal-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;}
+.deal-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.45;}
+.deal-action{display:inline-flex;align-items:center;margin-top:12px;padding:9px 16px;background:var(--gold);color:var(--ink);border-radius:var(--r-sm);font-size:12.5px;font-weight:700;cursor:pointer;border:none;min-height:40px;transition:all var(--ease);font-family:inherit;}
+.deal-action:active{background:var(--gold-dark);transform:scale(.97);}
+
+/* ── BOOKING ── */
+.booking-grid{display:flex;flex-direction:column;gap:20px;}
+.booking-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-xl);padding:22px 18px;box-shadow:var(--sh);}
+.booking-card h2{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:18px;}
+.form-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-size:10.5px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.08em;}
+.fg input,.fg select,.fg textarea{padding:13px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:16px;background:var(--cream);width:100%;color:var(--ink);transition:border-color var(--ease),background var(--ease),box-shadow var(--ease);-webkit-appearance:none;appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--forest);background:#fff;outline:none;box-shadow:0 0 0 3px rgba(45,74,53,.12);}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23647066' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+.fg textarea{min-height:80px;resize:vertical;}
+.fg input.error,.fg select.error{border-color:var(--danger);box-shadow:0 0 0 3px rgba(192,57,43,.1);}
+.pay-section{margin-top:20px;}
+.pay-label{font-size:10.5px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:block;}
+.pay-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.pay-opt{border:1.5px solid var(--border);border-radius:var(--r);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;background:#fff;transition:all var(--ease);min-height:60px;}
+.pay-opt:active{transform:scale(.97);}
+.pay-opt.chosen{border-color:var(--forest);background:var(--forest-light);}
+.pay-icon{font-size:13px;font-weight:800;}
+.pay-icon.stripe{color:#635BFF;}
+.pay-icon.paypal{color:#003087;}
+.pay-name{font-size:10.5px;font-weight:700;color:var(--ink-soft);}
+.pay-opt.chosen .pay-name{color:var(--forest);}
+.btn-confirm{width:100%;margin-top:20px;background:var(--forest);color:#fff;border:none;padding:17px;border-radius:var(--r);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;transition:background var(--ease),transform .12s;font-family:inherit;letter-spacing:.03em;}
+.btn-confirm:active{background:var(--forest-mid);transform:scale(.99);}
+.btn-confirm.success{background:var(--success);}
+.secure-label{text-align:center;margin-top:10px;font-size:12px;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:4px;}
+
+/* Sidebar */
+.sidebar{display:flex;flex-direction:column;gap:14px;}
+.side-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-lg);padding:18px;}
+.side-card h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:14px;}
+.side-item{display:flex;gap:12px;margin-bottom:12px;}
+.side-item:last-child{margin-bottom:0;}
+.s-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.s-text strong{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:1px;}
+.s-text span{font-size:12.5px;color:var(--ink-soft);}
+.promo-box{background:linear-gradient(135deg,var(--forest-deep),var(--forest-mid));border-radius:var(--r-lg);padding:20px 18px;text-align:center;}
+.promo-box p{color:rgba(255,255,255,.7);font-size:13.5px;}
+.promo-code{background:rgba(255,255,255,.1);border:1.5px dashed rgba(201,168,76,.5);border-radius:var(--r);padding:12px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:4px;margin:12px 0;cursor:pointer;transition:background var(--ease);}
+.promo-code:active{background:rgba(255,255,255,.18);}
+
+/* ── REVIEWS ── */
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+.review-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-lg);padding:18px;}
+.review-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.rscore{background:var(--forest);color:#fff;border-radius:4px 4px 4px 0;padding:8px 12px;font-size:1rem;font-weight:700;font-family:'Cormorant Garamond',serif;flex-shrink:0;}
+.rmeta strong{display:block;font-size:14.5px;font-weight:700;color:var(--ink);}
+.rmeta span{font-size:12.5px;color:var(--ink-soft);}
+.rverified{font-size:11.5px;color:var(--success);font-weight:700;margin-top:2px;}
+.rtext{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink-mid);line-height:1.65;font-style:italic;}
+.review-form-card{background:#fff;border:1px solid var(--border-soft);border-radius:var(--r-lg);padding:22px 18px;margin-top:16px;}
+.review-form-card h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:16px;}
+.stars-row{display:flex;gap:6px;margin-bottom:6px;}
+.stars-row span{font-size:2.1rem;cursor:pointer;color:var(--border);transition:color var(--ease),transform .12s;display:flex;}
+.stars-row span.lit{color:var(--gold);}
+.stars-row span:active{transform:scale(1.2);}
+
+/* ── NEWSLETTER ── */
+.nl-box{background:linear-gradient(135deg,var(--forest-deep) 0%,var(--forest-mid) 100%);border-radius:var(--r-xl);padding:30px 20px;display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden;}
+.nl-box::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(201,168,76,.07);pointer-events:none;}
+.nl-text h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:5px;}
+.nl-text p{font-size:13.5px;color:rgba(255,255,255,.65);line-height:1.55;}
+.nl-form{display:flex;flex-direction:column;gap:10px;}
+.nl-form input{padding:15px 16px;border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r);font-size:16px;width:100%;background:rgba(255,255,255,.1);color:#fff;outline:none;transition:border-color var(--ease);-webkit-appearance:none;appearance:none;}
+.nl-form input::placeholder{color:rgba(255,255,255,.4);}
+.nl-form input:focus{border-color:rgba(201,168,76,.6);background:rgba(255,255,255,.15);}
+
+/* ── FOOTER ── */
+.footer{background:var(--forest-deep);padding:44px 0 calc(24px + var(--safe-b));}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 20px;margin-bottom:32px;}
+.footer-brand{grid-column:1/-1;}
+.footer-brand img{height:36px;margin-bottom:12px;border-radius:var(--r-sm);}
+.footer-brand p{font-size:13.5px;color:rgba(255,255,255,.45);line-height:1.65;}
+.footer-pays{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.fpay{padding:5px 10px;border-radius:3px;font-size:11.5px;font-weight:700;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);}
+footer h4{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em;}
+footer ul li{margin-bottom:10px;}
+footer ul li a{font-size:13.5px;color:rgba(255,255,255,.45);cursor:pointer;transition:color var(--ease);display:flex;align-items:center;min-height:36px;}
+footer ul li a:active{color:rgba(255,255,255,.9);}
+.footer-btm{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;text-align:center;}
+.footer-btm p{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:12px;}
+.footer-trust{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.ftrust{font-size:11px;padding:4px 10px;border-radius:3px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.07);}
+
+/* ── MODAL — bottom sheet ── */
+.overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(28,48,34,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:flex-end;justify-content:center;padding:0;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:var(--r-xl) var(--r-xl) 0 0;width:100%;max-height:92vh;overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal::before{content:'';display:block;width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;}
+.modal-close{position:absolute;top:10px;right:12px;z-index:5;background:rgba(255,255,255,.95);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--ease);}
+.modal-close:active{background:var(--cream);transform:scale(.92);}
+.modal-img{aspect-ratio:16/9;overflow:hidden;margin-top:8px;}
+.modal-img img{width:100%;height:100%;}
+.modal-body{padding:18px;}
+.modal-body h2{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.modal-city{font-size:12px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;}
+.modal-score{background:var(--forest);color:#fff;border-radius:4px;padding:3px 10px;font-size:12.5px;font-weight:700;}
+.modal-desc{font-size:13.5px;color:var(--ink-mid);line-height:1.65;margin-bottom:14px;}
+.modal-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:14px;border-top:1px solid var(--border-soft);flex-wrap:wrap;padding-bottom:8px;}
+.modal-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink);}
+.modal-pnight{font-size:11.5px;color:var(--ink-soft);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(20px + var(--safe-b));left:16px;right:16px;z-index:900;background:var(--ink);color:#fff;padding:13px 18px;border-radius:var(--r-lg);font-size:14px;font-weight:500;box-shadow:var(--sh-lg);display:none;align-items:center;gap:8px;max-width:420px;margin:0 auto;animation:toastIn .28s ease;}
+.toast.show{display:flex;}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════
+   640px TABLET
+═══════════════════════ */
+@media(min-width:640px){
+  .container{padding:0 24px;}
+  .hdr-link,.hdr-btn-outline,.hdr-btn-solid{display:inline-flex;}
+  .hdr-btn-outline{align-items:center;padding:8px 16px;border:1.5px solid rgba(255,255,255,.4);border-radius:var(--r-sm);color:#fff;font-size:14px;font-weight:600;background:transparent;cursor:pointer;transition:all var(--ease);min-height:40px;margin-left:4px;}
+  .hdr-btn-solid{align-items:center;padding:8px 18px;border:none;border-radius:var(--r-sm);color:var(--ink);font-size:14px;font-weight:700;background:var(--gold);cursor:pointer;transition:all var(--ease);min-height:40px;margin-left:4px;}
+  .hdr-btn-outline:active{background:rgba(255,255,255,.1);}
+  .hdr-btn-solid:active{background:var(--gold-dark);}
+  .hamburger{display:none;}
+  .search-card-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;flex-direction:row;}
+  .sf{border-right:1px solid var(--border-soft);border-bottom:none;min-height:70px;}
+  .sf:last-of-type{border-right:none;}
+  .search-btn{border-radius:0 var(--r-lg) var(--r-lg) 0;padding:0 24px;min-width:110px;width:auto;}
+  .guests-dd{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);width:320px;}
+  .hero-stats{grid-template-columns:repeat(4,1fr);}
+  .hstat:nth-child(n+3){border-top:none;}
+  .hstat:nth-child(2){border-left:1px solid rgba(255,255,255,.1);}
+  .hstat:nth-child(3){border-left:1px solid rgba(255,255,255,.1);}
+  .hstat:nth-child(4){border-left:1px solid rgba(255,255,255,.1);}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .offers-grid{grid-template-columns:repeat(2,1fr);}
+  .dest-grid{grid-template-columns:repeat(3,1fr);}
+  .dest-card{height:180px;}
+  .dest-card.big{grid-column:auto;grid-row:span 2;height:auto;}
+  .props-grid{grid-template-columns:repeat(2,1fr);}
+  .deals-grid{grid-template-columns:repeat(4,1fr);}
+  .reviews-grid{grid-template-columns:repeat(2,1fr);}
+  .nl-box{flex-direction:row;align-items:center;justify-content:space-between;padding:40px;}
+  .nl-form{flex-direction:row;min-width:300px;}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-brand{grid-column:1/-1;}
+  .overlay{align-items:center;padding:16px;}
+  .modal{border-radius:var(--r-xl);max-width:520px;}
+  .modal::before{display:none;}
+}
+
+/* ═══════════════════════
+   768px DESKTOP
+═══════════════════════ */
+@media(min-width:768px){
+  .section{padding:56px 0;}
+  .why-grid{grid-template-columns:repeat(4,1fr);}
+  .offers-grid{grid-template-columns:repeat(3,1fr);}
+  .props-grid{grid-template-columns:repeat(3,1fr);}
+  .reviews-grid{grid-template-columns:repeat(3,1fr);}
+  .booking-grid{display:grid;grid-template-columns:1fr 340px;gap:32px;}
+  .form-grid{grid-template-columns:1fr 1fr;}
+  .f-full{grid-column:1/-1;}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr;}
+  .footer-brand{grid-column:auto;}
+  .why-card:hover::before{height:100%;}
+  .prop-card:hover{transform:translateY(-3px);box-shadow:var(--sh-md);}
+  .offer-card:hover{transform:translateY(-2px);box-shadow:var(--sh-md);}
+  @media(hover:hover){
+    .hdr-link:hover{color:#fff;background:rgba(255,255,255,.16);}
+    .hdr-btn-solid:hover{background:var(--gold-dark);}
+    .hdr-btn-outline:hover{background:rgba(255,255,255,.1);}
+  }
+}
+
+/* ═══════════════════════
+   1024px WIDE
+═══════════════════════ */
+@media(min-width:1024px){
+  .props-grid{grid-template-columns:repeat(4,1fr);}
+  .booking-grid{grid-template-columns:1fr 360px;}
+}
+
+/* ═══════════════════════
+   REDUCED MOTION
+═══════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span></div>
+
+<!-- Mobile Drawer -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="drawer-top">
+    <a href="/" class="logo-link" onclick="closeDrawer()">
+      <img class="logo-img" src="https://i.ibb.co/SXz2NcMn/Whats-App-Image-2026-02-17-at-8-25-31-PM.jpg" alt="Kornialle">
+      <span class="logo-text">Kornialle</span>
+    </a>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
+  </div>
+  <button class="drawer-link" onclick="switchTab('stays');closeDrawer()">🛏️ Stays</button>
+  <button class="drawer-link" onclick="switchTab('hotels');closeDrawer()">🏨 Hotels</button>
+  <button class="drawer-link" onclick="switchTab('homes');closeDrawer()">🏠 Vacation Homes</button>
+  <button class="drawer-link" onclick="switchTab('cabins');closeDrawer()">🏕️ Cabins</button>
+  <button class="drawer-link" onclick="switchTab('apartments');closeDrawer()">🏢 Apartments</button>
+  <button class="drawer-link" onclick="switchTab('deals');goTo('deals');closeDrawer()">🏷️ Deals</button>
+  <button class="drawer-link" onclick="goTo('book');closeDrawer()">📋 Book Now</button>
+  <button class="drawer-link" onclick="goTo('reviews');closeDrawer()">⭐ Reviews</button>
+  <div class="drawer-auth">
+    <button class="btn btn-ghost btn-full" onclick="note('Sign in — coming soon!')">Sign In</button>
+    <button class="btn btn-accent btn-full" onclick="note('Register — coming soon!')">Register Free</button>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a href="/" class="logo-link">
+        <img class="logo-img" src="https://i.ibb.co/SXz2NcMn/Whats-App-Image-2026-02-17-at-8-25-31-PM.jpg" alt="Kornialle logo">
+        <span class="logo-text">Kornialle</span>
+        <span class="logo-badge">USA</span>
+      </a>
+      <div class="header-actions">
+        <button class="hdr-link" onclick="note('List your property — coming soon!')">List property</button>
+        <button class="hdr-link" onclick="note('Help center opening...')">Help</button>
+        <button class="hdr-btn-outline" onclick="note('Sign in coming soon!')">Sign in</button>
+        <button class="hdr-btn-solid"   onclick="note('Register — coming soon!')">Register</button>
+        <button class="hamburger" onclick="openDrawer()" aria-label="Open menu" id="hamburgerBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Property categories">
+    <div class="container">
+      <div class="mainnav-scroll">
+        <button class="nav-tab active" id="tab-stays" onclick="switchTab('stays')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12l9-9 9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Stays
+        </button>
+        <button class="nav-tab" id="tab-hotels" onclick="switchTab('hotels')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>Hotels
+        </button>
+        <button class="nav-tab" id="tab-homes" onclick="switchTab('homes')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Vacation Homes
+        </button>
+        <button class="nav-tab" id="tab-apartments" onclick="switchTab('apartments')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M8 18h.01M12 18h.01M16 14h.01"/></svg>Apartments
+        </button>
+        <button class="nav-tab" id="tab-cabins" onclick="switchTab('cabins')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 17l9-13 9 13H3z"/><path d="M9 17v-5h6v5"/></svg>Cabins
+        </button>
+        <button class="nav-tab" id="tab-deals" onclick="switchTab('deals');goTo('deals')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Deals
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">✦ USA's Most Trusted Stay Platform</div>
+      <h1>Find your next stay<br><em>across America</em></h1>
+      <p class="hero-sub">Great prices on hotels, vacation homes, cabins and more — free cancellation on most bookings.</p>
+
+      <form action="/search/" method="GET" class="search-card" autocomplete="off">
+        <div class="search-card-inner">
+          <div class="sf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div class="sf-inner">
+              <label for="searchQ">Where to?</label>
+              <input id="searchQ" type="text" name="q" placeholder="City or property" inputmode="search">
+            </div>
+          </div>
+          <div class="sf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="sf-inner">
+              <label for="checkIn">Check-in</label>
+              <input id="checkIn" type="date" name="check_in">
+            </div>
+          </div>
+          <div class="sf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="sf-inner">
+              <label for="checkOut">Check-out</label>
+              <input id="checkOut" type="date" name="check_out">
+            </div>
+          </div>
+          <div class="sf" style="position:relative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <div class="sf-inner">
+              <label>Guests &amp; Rooms</label>
+              <div class="guests-display" onclick="toggleGuests(event)" role="button" tabindex="0" id="guestsDisplay">
+                <span id="gSummary">2 guests · 1 room</span>
+              </div>
+            </div>
+            <div class="guests-dd" id="guestsDd" onclick="event.stopPropagation()">
+              <div class="g-row">
+                <div class="g-label"><strong>Adults</strong><small>Age 13+</small></div>
+                <div class="g-ctrl">
+                  <button class="g-btn" id="a-" onclick="adj('adults',-1)" type="button">−</button>
+                  <span class="g-num" id="a-n">2</span>
+                  <button class="g-btn" onclick="adj('adults',1)" type="button">+</button>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><strong>Children</strong><small>Under 13</small></div>
+                <div class="g-ctrl">
+                  <button class="g-btn" id="c-" onclick="adj('children',-1)" type="button">−</button>
+                  <span class="g-num" id="c-n">0</span>
+                  <button class="g-btn" onclick="adj('children',1)" type="button">+</button>
+                </div>
+              </div>
+              <div class="g-row">
+                <div class="g-label"><strong>Rooms</strong></div>
+                <div class="g-ctrl">
+                  <button class="g-btn" id="r-" onclick="adj('rooms',-1)" type="button">−</button>
+                  <span class="g-num" id="r-n">1</span>
+                  <button class="g-btn" onclick="adj('rooms',1)" type="button">+</button>
+                </div>
+              </div>
+              <input type="hidden" name="adults"   id="a-h" value="2">
+              <input type="hidden" name="children" id="c-h" value="0">
+              <input type="hidden" name="rooms"    id="r-h" value="1">
+              <button class="btn btn-primary btn-full" style="margin-top:16px" onclick="toggleGuests(event)" type="button">Done</button>
+            </div>
+          </div>
+          <button type="submit" class="search-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Search
+          </button>
+        </div>
+      </form>
+
+      <div class="hero-stats">
+        <div class="hstat"><strong>3,200+</strong><span>Properties</span></div>
+        <div class="hstat"><strong>180+</strong><span>Cities</span></div>
+        <div class="hstat"><strong>4.9★</strong><span>Rating</span></div>
+        <div class="hstat"><strong>98%</strong><span>Happy Guests</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-scroll">
+      <div class="trust-item"><span class="trust-dot"></span>Secure Payments</div>
+      <div class="trust-item"><span class="trust-dot"></span>Verified Properties</div>
+      <div class="trust-item"><span class="trust-dot"></span>Free Cancellation</div>
+      <div class="trust-item"><span class="trust-dot"></span>24/7 Support</div>
+      <div class="trust-item"><span class="trust-dot"></span>Best Price Guarantee</div>
+    </div>
+  </div>
+</div>
+
+<!-- Why Kornialle -->
+<section class="section section-white">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Why Choose Us</div><h2 class="sec-title">Why Kornialle?</h2></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🛡️</div><h3>Book now, pay later</h3><p>Free cancellation on most rooms — your plans can change.</p></div>
+      <div class="why-card"><div class="why-icon">⭐</div><h3>Verified reviews</h3><p>Only guests who stayed can leave a review. Honest, always.</p></div>
+      <div class="why-card"><div class="why-icon">🏘️</div><h3>3,200+ properties</h3><p>Hotels, cabins, homes &amp; apartments across the US.</p></div>
+      <div class="why-card"><div class="why-icon">💬</div><h3>24/7 support</h3><p>Our US-based team ready to help anytime.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Offers -->
+<section class="section section-alt" id="deals">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Limited Time</div><h2 class="sec-title">Offers &amp; Deals</h2></div>
+      <button class="see-all" onclick="note('Viewing all offers...')">See all</button>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-img"><img src="https://i.ibb.co/Hf2Q7f8t/IMG-1093.jpg" alt="Early 2026 Deals" loading="lazy"></div>
+        <div class="offer-body"><div class="offer-tag">Early 2026</div><div class="offer-title">At least 15% off</div><p class="offer-desc">Book now and stay until April 2026. Limited rooms available.</p><button class="btn btn-primary btn-sm" onclick="goTo('book')">Explore →</button></div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-img"><img src="https://i.ibb.co/99k7jMjZ/IMG-1094.jpg" alt="Weekend Saver" loading="lazy"></div>
+        <div class="offer-body"><div class="offer-tag">Weekend</div><div class="offer-title">Free breakfast</div><p class="offer-desc">Complimentary breakfast at 60+ hotels this weekend.</p><button class="btn btn-primary btn-sm" onclick="goTo('book')">Explore →</button></div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-img"><img src="https://i.ibb.co/yF0VcKf0/IMG-1095.jpg" alt="Member Rates" loading="lazy"></div>
+        <div class="offer-body"><div class="offer-tag">💌 Member</div><div class="offer-title">Secret prices</div><p class="offer-desc">Register free for member-only rates on thousands of stays.</p><button class="btn btn-accent btn-sm" onclick="note('Register — coming soon...')">Sign up</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Destinations -->
+<section class="section section-white" id="destinations">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Explore</div><h2 class="sec-title">Popular Destinations</h2></div>
+      <button class="see-all" onclick="note('Browsing all destinations...')">All cities</button>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card big" onclick="quickSearch('New York')">
+        <img class="dest-img" src="https://i.ibb.co/JjNtdVcS/IMG-1275.jpg" alt="New York City" loading="lazy">
+        <div class="dest-overlay"><div class="dest-name">New York City</div><div class="dest-count">420 properties</div></div>
+        <button class="dest-explore" onclick="event.stopPropagation();quickSearch('New York')">Explore →</button>
+      </div>
+      <div class="dest-card" onclick="quickSearch('Miami')">
+        <img class="dest-img" src="https://i.ibb.co/rfyhbPVS/IMG-1097.jpg" alt="Miami" loading="lazy">
+        <div class="dest-overlay"><div class="dest-name">Miami</div><div class="dest-count">218 properties</div></div>
+        <button class="dest-explore" onclick="event.stopPropagation();quickSearch('Miami')">Explore →</button>
+      </div>
+      <div class="dest-card" onclick="quickSearch('Los Angeles')">
+        <img class="dest-img" src="https://i.ibb.co/x882CqFj/IMG-1098.jpg" alt="Los Angeles" loading="lazy">
+        <div class="dest-overlay"><div class="dest-name">Los Angeles</div><div class="dest-count">315 properties</div></div>
+        <button class="dest-explore" onclick="event.stopPropagation();quickSearch('Los Angeles')">Explore →</button>
+      </div>
+      <div class="dest-card" onclick="quickSearch('Chicago')">
+        <img class="dest-img" src="https://i.ibb.co/kgDXt6HB/IMG-1276.jpg" alt="Chicago" loading="lazy">
+        <div class="dest-overlay"><div class="dest-name">Chicago</div><div class="dest-count">189 properties</div></div>
+        <button class="dest-explore" onclick="event.stopPropagation();quickSearch('Chicago')">Explore →</button>
+      </div>
+      <div class="dest-card" onclick="quickSearch('Nashville')">
+        <img class="dest-img" src="https://i.ibb.co/WWzRFr9m/IMG-1277.jpg" alt="Nashville" loading="lazy">
+        <div class="dest-overlay"><div class="dest-name">Nashville</div><div class="dest-count">142 properties</div></div>
+        <button class="dest-explore" onclick="event.stopPropagation();quickSearch('Nashville')">Explore →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Properties -->
+<section class="section section-alt" id="stays">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Featured Stays</div><h2 class="sec-title">Homes, apartments &amp; more</h2></div>
+      <button class="see-all" onclick="note('Loading all properties...')">See all</button>
+    </div>
+    <div class="props-grid">
+      <div class="prop-card" onclick="openModal('1')" tabindex="0" role="button">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=75" alt="The Manhattan Suite Hotel" loading="lazy">
+          <div class="prop-badge b-red">−18%</div>
+          <button class="prop-wish" onclick="toggleWish(event,this)" aria-label="Save">♡</button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-loc">New York City, NY</div>
+          <div class="prop-name">The Manhattan Suite Hotel</div>
+          <div class="prop-score-row"><span class="pscore">9.4</span><span class="pslabel">Exceptional</span><span class="pscount">1,284 reviews</span></div>
+          <div class="prop-tags"><span class="ptag">Free WiFi</span><span class="ptag">Breakfast</span><span class="ptag ptag-g">Free cancellation</span></div>
+          <div class="prop-footer"><div><div class="pp-was">$340</div><div class="pp-price">$278</div><div class="pp-night">/night</div></div><button class="btn-avail" onclick="event.stopPropagation();goTo('book')">View →</button></div>
+        </div>
+      </div>
+      <div class="prop-card" onclick="openModal('2')" tabindex="0" role="button">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&auto=format&fit=crop&q=75" alt="Ocean View Luxury Villa" loading="lazy">
+          <div class="prop-badge b-green">Popular</div>
+          <button class="prop-wish" onclick="toggleWish(event,this)" aria-label="Save">♡</button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-loc">Miami Beach, FL</div>
+          <div class="prop-name">Ocean View Luxury Villa</div>
+          <div class="prop-score-row"><span class="pscore">9.7</span><span class="pslabel">Outstanding</span><span class="pscount">874 reviews</span></div>
+          <div class="prop-tags"><span class="ptag">Pool</span><span class="ptag">Ocean view</span><span class="ptag ptag-g">Free cancellation</span></div>
+          <div class="prop-footer"><div><div class="pp-price">$420</div><div class="pp-night">/night</div></div><button class="btn-avail" onclick="event.stopPropagation();goTo('book')">View →</button></div>
+        </div>
+      </div>
+      <div class="prop-card" onclick="openModal('3')" tabindex="0" role="button">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&auto=format&fit=crop&q=75" alt="Smoky Mountain Forest Cabin" loading="lazy">
+          <div class="prop-badge b-amber">Hot deal</div>
+          <button class="prop-wish" onclick="toggleWish(event,this)" aria-label="Save">♡</button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-loc">Asheville, NC</div>
+          <div class="prop-name">Smoky Mountain Forest Cabin</div>
+          <div class="prop-score-row"><span class="pscore">9.2</span><span class="pslabel">Wonderful</span><span class="pscount">493 reviews</span></div>
+          <div class="prop-tags"><span class="ptag">Hot tub</span><span class="ptag">Fire pit</span><span class="ptag ptag-g">Free cancellation</span></div>
+          <div class="prop-footer"><div><div class="pp-was">$195</div><div class="pp-price">$149</div><div class="pp-night">/night</div></div><button class="btn-avail" onclick="event.stopPropagation();goTo('book')">View →</button></div>
+        </div>
+      </div>
+      <div class="prop-card" onclick="openModal('4')" tabindex="0" role="button">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&auto=format&fit=crop&q=75" alt="Riverwalk Boutique Loft" loading="lazy">
+          <button class="prop-wish" onclick="toggleWish(event,this)" aria-label="Save">♡</button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-loc">Chicago, IL</div>
+          <div class="prop-name">Riverwalk Boutique Loft</div>
+          <div class="prop-score-row"><span class="pscore">9.0</span><span class="pslabel">Wonderful</span><span class="pscount">312 reviews</span></div>
+          <div class="prop-tags"><span class="ptag">City view</span><span class="ptag">Gym</span><span class="ptag ptag-g">Free cancellation</span></div>
+          <div class="prop-footer"><div><div class="pp-price">$210</div><div class="pp-night">/night</div></div><button class="btn-avail" onclick="event.stopPropagation();goTo('book')">View →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deals Dark -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow sec-eyebrow-accent">Time-Limited</div><h2 class="sec-title sec-title-white">Today's Best Deals</h2></div>
+      <button class="see-all see-all-white" onclick="note('Viewing all deals...')">All deals</button>
+    </div>
+    <div class="deals-grid">
+      <div class="deal-card" onclick="goTo('book')"><div class="deal-icon">🌅</div><div class="deal-pct">25% OFF</div><div class="deal-title">Early Bird</div><div class="deal-desc">Book 21+ days ahead</div><button class="deal-action" onclick="event.stopPropagation();goTo('book')">Book now</button></div>
+      <div class="deal-card" onclick="goTo('book')"><div class="deal-icon">🍳</div><div class="deal-pct">FREE</div><div class="deal-title">Breakfast</div><div class="deal-desc">Weekend stays included</div><button class="deal-action" onclick="event.stopPropagation();goTo('book')">Claim</button></div>
+      <div class="deal-card" onclick="goTo('book')"><div class="deal-icon">🌙</div><div class="deal-pct">30% OFF</div><div class="deal-title">7+ Nights</div><div class="deal-desc">Extended stay discount</div><button class="deal-action" onclick="event.stopPropagation();goTo('book')">Book now</button></div>
+      <div class="deal-card" onclick="note('Register — coming soon!')"><div class="deal-icon">💌</div><div class="deal-pct">$25 OFF</div><div class="deal-title">First-time</div><div class="deal-desc">Code: WELCOME25</div><button class="deal-action" onclick="event.stopPropagation();note('Register — coming soon!')">Sign up</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="section section-white" id="book">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Reserve</div><h2 class="sec-title">Make a Booking</h2><p class="sec-sub">Fill in your details and confirm your stay in seconds.</p></div>
+    </div>
+    <div class="booking-grid">
+      <div class="booking-card">
+        <h2>Guest Details</h2>
+        <form id="bookForm" novalidate onsubmit="submitBook(event)">
+          <div class="form-grid">
+            <div class="fg"><label for="bFname">First Name *</label><input id="bFname" type="text" name="first_name" placeholder="Sarah" required autocomplete="given-name"></div>
+            <div class="fg"><label for="bLname">Last Name *</label><input id="bLname" type="text" name="last_name" placeholder="Johnson" required autocomplete="family-name"></div>
+            <div class="fg"><label for="bEmail">Email *</label><input id="bEmail" type="email" name="email" placeholder="you@email.com" required autocomplete="email" inputmode="email"></div>
+            <div class="fg"><label for="bPhone">Phone</label><input id="bPhone" type="tel" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" inputmode="tel"></div>
+            <div class="fg f-full">
+              <label for="bProp">Property *</label>
+              <select id="bProp" name="property_id" required>
+                <option value="">— Select a property —</option>
+                <option value="1">The Manhattan Suite Hotel — New York City, NY</option>
+                <option value="2">Ocean View Luxury Villa — Miami Beach, FL</option>
+                <option value="3">Smoky Mountain Forest Cabin — Asheville, NC</option>
+                <option value="4">Riverwalk Boutique Loft — Chicago, IL</option>
+              </select>
+            </div>
+            <div class="fg"><label for="bCheckin">Check-in *</label><input id="bCheckin" type="date" name="check_in" required></div>
+            <div class="fg"><label for="bCheckout">Check-out *</label><input id="bCheckout" type="date" name="check_out" required></div>
+            <div class="fg"><label for="bAdults">Adults</label><select id="bAdults" name="adults"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></div>
+            <div class="fg"><label for="bChildren">Children</label><select id="bChildren" name="children"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
+            <div class="fg"><label for="bRooms">Rooms</label><select id="bRooms" name="rooms"><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option></select></div>
+            <div class="fg f-full"><label for="bReqs">Special Requests</label><textarea id="bReqs" name="special_requests" placeholder="Accessibility needs, arrival time, preferences..."></textarea></div>
+          </div>
+          <div class="pay-section">
+            <span class="pay-label">Pay with</span>
+            <div class="pay-opts">
+              <div class="pay-opt chosen" onclick="pickPay(this)" data-m="stripe"><div class="pay-icon stripe">⚡ Stripe</div><div class="pay-name">Card</div></div>
+              <div class="pay-opt" onclick="pickPay(this)" data-m="paypal"><div class="pay-icon paypal">PayPal</div><div class="pay-name">PayPal</div></div>
+              <div class="pay-opt" onclick="pickPay(this)" data-m="mastercard"><div style="display:flex;line-height:1"><span style="color:#EB001B;font-size:1.3rem">●</span><span style="color:#F79E1B;margin-left:-7px;font-size:1.3rem">●</span></div><div class="pay-name">Mastercard</div></div>
+            </div>
+            <input type="hidden" name="payment_method" id="payMethod" value="stripe">
+          </div>
+          <button type="submit" class="btn-confirm" id="confirmBtn">🔒 Confirm Booking</button>
+          <div class="secure-label">🔐 256-bit SSL encrypted &mdash; your data is always safe</div>
+        </form>
+      </div>
+      <div class="sidebar">
+        <div class="side-card">
+          <h3>Why book with us?</h3>
+          <div class="side-item"><span class="s-icon">🏷️</span><div class="s-text"><strong>Best Price Guarantee</strong><span>Find it cheaper? We'll match it.</span></div></div>
+          <div class="side-item"><span class="s-icon">🔐</span><div class="s-text"><strong>Secure Payments</strong><span>Your details are always protected.</span></div></div>
+          <div class="side-item"><span class="s-icon">✈️</span><div class="s-text"><strong>Free Cancellation</strong><span>Plans changed? No charge.</span></div></div>
+          <div class="side-item"><span class="s-icon">⏰</span><div class="s-text"><strong>Instant Confirmation</strong><span>Confirmed the moment you book.</span></div></div>
+        </div>
+        <div class="promo-box">
+          <p>🎁 First-time guest?</p>
+          <div class="promo-code" onclick="note('✅ Code WELCOME25 copied!')">WELCOME25</div>
+          <p style="font-size:13px;color:rgba(255,255,255,.6)">Tap the code to copy · Save $25</p>
+        </div>
+        <div class="side-card" style="background:var(--cream)">
+          <h3>Need help?</h3>
+          <div class="side-item"><span class="s-icon">💬</span><div class="s-text"><strong>Live Chat</strong><span>Available 24/7</span></div></div>
+          <div class="side-item"><span class="s-icon">📧</span><div class="s-text"><strong>Email</strong><span>hello@kornialle.com</span></div></div>
+          <div class="side-item" style="margin-bottom:0"><span class="s-icon">📞</span><div class="s-text"><strong>Phone</strong><span>+1 (800) 555-KORN</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="section section-alt" id="reviews">
+  <div class="container">
+    <div class="sec-hdr">
+      <div><div class="sec-eyebrow">Guest Reviews</div><h2 class="sec-title">What guests say</h2></div>
+      <button class="see-all" onclick="note('Loading all reviews...')">All reviews</button>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><div class="rscore">9.5</div><div class="rmeta"><strong>Sarah M.</strong><span>New York City · Jan 2026</span><div class="rverified">✓ Verified stay</div></div></div>
+        <p class="rtext">"Absolutely flawless from booking to check-out. The property was even better than the photos — will definitely be back."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div class="rscore">9.8</div><div class="rmeta"><strong>James &amp; Priya</strong><span>Miami Beach · Dec 2025</span><div class="rverified">✓ Verified stay</div></div></div>
+        <p class="rtext">"Incredible service, great deal, and the ocean views were breathtaking. Kornialle made everything so effortless."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div class="rscore">9.2</div><div class="rmeta"><strong>Maria L.</strong><span>Chicago · Feb 2026</span><div class="rverified">✓ Verified stay</div></div></div>
+        <p class="rtext">"Easy checkout, seamless check-in and the staff were so welcoming. Highly recommend to anyone visiting the US."</p>
+      </div>
+    </div>
+    <div class="review-form-card">
+      <h3>Share your experience</h3>
+      <form onsubmit="submitReview(event)">
+        <div class="form-grid">
+          <div class="fg"><label for="rName">Your Name</label><input id="rName" type="text" name="reviewer_name" placeholder="Your name" autocomplete="name"></div>
+          <div class="fg"><label for="rProp">Property Stayed</label><select id="rProp" name="property_id"><option value="1">The Manhattan Suite Hotel</option><option value="2">Ocean View Luxury Villa</option><option value="3">Smoky Mountain Forest Cabin</option><option value="4">Riverwalk Boutique Loft</option></select></div>
+          <div class="fg"><label>Your Rating</label><div class="stars-row" id="starsRow"><span onclick="setStars(1)">★</span><span onclick="setStars(2)">★</span><span onclick="setStars(3)">★</span><span onclick="setStars(4)">★</span><span onclick="setStars(5)">★</span></div><input type="hidden" name="rating" id="starVal" value="5"></div>
+          <div class="fg f-full"><label for="rText">Your Review</label><textarea id="rText" name="review_text" placeholder="Tell us about your stay..."></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top:6px">Submit Review</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section section-white">
+  <div class="container">
+    <div class="nl-box">
+      <div class="nl-text"><h3>Get deals in your inbox</h3><p>Flash sales, new properties &amp; exclusive member offers — weekly.</p></div>
+      <div class="nl-form">
+        <input type="email" id="nlEmail" placeholder="your@email.com" inputmode="email" autocomplete="email" aria-label="Email for newsletter">
+        <button class="btn btn-accent" onclick="subscribe()" type="button">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/SXz2NcMn/Whats-App-Image-2026-02-17-at-8-25-31-PM.jpg" alt="Kornialle">
+        <p>Your trusted companion for stays across the United States. Thousands of properties, one seamless experience.</p>
+        <div class="footer-pays"><div class="fpay">Stripe</div><div class="fpay">PayPal</div><div class="fpay">Mastercard</div><div class="fpay">Visa</div></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a onclick="switchTab('hotels')">Hotels</a></li><li><a onclick="switchTab('homes')">Vacation Homes</a></li><li><a onclick="switchTab('cabins')">Cabins</a></li><li><a onclick="switchTab('apartments')">Apartments</a></li><li><a onclick="goTo('deals')">Deals</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a onclick="note('Help center...')">Help Center</a></li><li><a onclick="note('Contact us...')">Contact Us</a></li><li><a onclick="note('Cancellation policy...')">Cancellation Policy</a></li><li><a onclick="note('FAQ...')">FAQ</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a onclick="note('About...')">About Kornialle</a></li><li><a onclick="note('List your property...')">List Your Property</a></li><li><a onclick="note('Careers...')">Careers</a></li><li><a onclick="note('Privacy...')">Privacy Policy</a></li></ul></div>
+    </div>
+    <div class="footer-btm">
+      <p>© 2026 Kornialle. All rights reserved.</p>
+      <div class="footer-trust"><div class="ftrust">SSL Secured</div><div class="ftrust">GDPR Compliant</div><div class="ftrust">PCI DSS</div><div class="ftrust">Verified Properties</div></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Property Modal (bottom sheet) -->
+<div class="overlay" id="propOverlay" onclick="closeModalOut(event)" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="modal-img"><img id="mImg" src="" alt=""></div>
+    <div class="modal-body">
+      <h2 id="mName"></h2>
+      <div class="modal-meta"><span class="modal-city" id="mCity"></span><span class="modal-score" id="mScore"></span></div>
+      <p class="modal-desc" id="mDesc"></p>
+      <div class="prop-tags" id="mTags"></div>
+      <div class="modal-footer">
+        <div><div class="modal-price" id="mPrice"></div><div class="modal-pnight">per night</div></div>
+        <button class="btn btn-primary" onclick="closeModal();goTo('book')">Reserve Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const TODAY=new Date().toISOString().split('T')[0];
+document.querySelectorAll('input[type="date"]').forEach(el=>el.min=TODAY);
+
+let tTimer;
+function note(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');clearTimeout(tTimer);tTimer=setTimeout(()=>t.classList.remove('show'),3000);}
+
+function switchTab(id){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const tab=document.getElementById('tab-'+id);if(tab)tab.classList.add('active');if(id!=='deals')note('Filtering by: '+id.charAt(0).toUpperCase()+id.slice(1));}
+
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeModal();}});
+
+function quickSearch(city){document.getElementById('searchQ').value=city;note('🔍 Searching "'+city+'"');window.scrollTo({top:0,behavior:'smooth'});}
+
+const gv={adults:2,children:0,rooms:1},gm={adults:1,children:0,rooms:1};
+function toggleGuests(e){e.stopPropagation();document.getElementById('guestsDd').classList.toggle('open');}
+document.addEventListener('click',()=>document.getElementById('guestsDd').classList.remove('open'));
+function adj(type,d){
+  gv[type]=Math.max(gm[type],gv[type]+d);
+  const k=type[0];
+  document.getElementById(k+'-n').textContent=gv[type];
+  document.getElementById(k+'-h').value=gv[type];
+  document.getElementById(k+'-').disabled=gv[type]<=gm[type];
+  const total=gv.adults+gv.children;
+  document.getElementById('gSummary').textContent=total+' guest'+(total!==1?'s':'')+' · '+gv.rooms+' room'+(gv.rooms!==1?'s':'');
+}
+['adults','children','rooms'].forEach(t=>{document.getElementById(t[0]+'-').disabled=gv[t]<=gm[t];});
+
+function toggleWish(e,btn){e.stopPropagation();btn.classList.toggle('on');btn.textContent=btn.classList.contains('on')?'♥':'♡';note(btn.classList.contains('on')?'❤️ Saved to wishlist':'🗑️ Removed from wishlist');}
+
+function pickPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('chosen'));el.classList.add('chosen');document.getElementById('payMethod').value=el.dataset.m;}
+
+function submitBook(e){
+  e.preventDefault();
+  const reqs=e.target.querySelectorAll('[required]');let ok=true;
+  reqs.forEach(f=>{if(!f.value.trim()){f.classList.add('error');ok=false;}else f.classList.remove('error');});
+  if(!ok){note('⚠️ Please fill all required fields');return;}
+  const btn=document.getElementById('confirmBtn');
+  btn.textContent='⏳ Processing…';btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent='✅ Booking Confirmed!';btn.classList.add('success');note('✅ Your booking is confirmed!');
+    setTimeout(()=>{btn.textContent='🔒 Confirm Booking';btn.disabled=false;btn.classList.remove('success');e.target.reset();setStars(5);document.querySelectorAll('.pay-opt').forEach((o,i)=>o.classList.toggle('chosen',i===0));document.getElementById('payMethod').value='stripe';},3000);
+  },1600);
+}
+
+function submitReview(e){
+  e.preventDefault();const btn=e.target.querySelector('button[type="submit"]');
+  btn.textContent='⏳ Submitting…';btn.disabled=true;
+  setTimeout(()=>{btn.textContent='✅ Submitted!';note('⭐ Thank you for your review!');setTimeout(()=>{btn.textContent='Submit Review';btn.disabled=false;e.target.reset();setStars(5);},2200);},1000);
+}
+
+function subscribe(){const em=document.getElementById('nlEmail').value.trim();if(!em||!em.includes('@')){note('⚠️ Please enter a valid email');return;}note('✉️ Subscribed! Welcome to Kornialle Deals.');document.getElementById('nlEmail').value='';}
+
+function setStars(n){document.getElementById('starVal').value=n;document.querySelectorAll('#starsRow span').forEach((s,i)=>s.classList.toggle('lit',i<n));}
+
+const propData={
+  '1':{img:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80',name:'The Manhattan Suite Hotel',city:'New York City, NY',score:'⭐ 9.4',price:'$278',desc:'A stunning boutique hotel in the heart of Manhattan. Panoramic city views, world-class dining, and impeccable service — steps from Central Park.',tags:['Free WiFi','Breakfast','Free cancellation','City views','Spa']},
+  '2':{img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&auto=format&fit=crop&q=80',name:'Ocean View Luxury Villa',city:'Miami Beach, FL',score:'⭐ 9.7',price:'$420',desc:'Wake up to breathtaking Atlantic Ocean views. Features a private pool, modern kitchen, and direct beach access in vibrant Miami Beach.',tags:['Private pool','Ocean view','Beach access','Free cancellation','Parking']},
+  '3':{img:'https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=700&auto=format&fit=crop&q=80',name:'Smoky Mountain Forest Cabin',city:'Asheville, NC',score:'⭐ 9.2',price:'$149',desc:'Escape to this charming cabin nestled in the Blue Ridge Mountains. Hot tub, fire pit, full kitchen and stunning mountain views.',tags:['Hot tub','Fire pit','Mountain views','Free cancellation','Pet friendly']},
+  '4':{img:'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&auto=format&fit=crop&q=80',name:'Riverwalk Boutique Loft',city:'Chicago, IL',score:'⭐ 9.0',price:'$210',desc:'Stylish industrial loft overlooking the Chicago River. Perfectly located for exploring the Windy City with high-end finishes.',tags:['City view','Gym','River view','Free cancellation','Concierge']}
+};
+function openModal(id){const p=propData[String(id)];if(!p)return;document.getElementById('mImg').src=p.img;document.getElementById('mImg').alt=p.name;document.getElementById('mName').textContent=p.name;document.getElementById('mCity').textContent=p.city;document.getElementById('mScore').textContent=p.score;document.getElementById('mDesc').textContent=p.desc;document.getElementById('mPrice').textContent=p.price;document.getElementById('mTags').innerHTML=p.tags.map(t=>`<span class="ptag">${t}</span>`).join('');document.getElementById('propOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('propOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOut(e){if(e.target===document.getElementById('propOverlay'))closeModal();}
+
+document.querySelectorAll('.prop-card[role="button"]').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')c.click();});});
+
+setStars(5);
+</script>
+</body>
+</html>
